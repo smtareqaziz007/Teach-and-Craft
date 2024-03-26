@@ -1,5 +1,3 @@
-import React from "react";
-
 const Classrooms = () => {
   return <div>Classrooms</div>;
 };
