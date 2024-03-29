@@ -28,9 +28,19 @@ const Students = () => {
   const handleClose = () => setshowModal(false);
   const handleShow = () => setshowModal(true);
 
+  const onSubmit = (newStudentData) => {
+    console.log("New student");
+    console.log(newStudentData);
+    setStudentData([...studentData, newStudentData]);
+  };
+
   return (
     <>
-      <AddModal showModal={showModal} handleClose={handleClose} />
+      <AddModal
+        showModal={showModal}
+        handleClose={handleClose}
+        onSubmit={onSubmit}
+      />
       <Container
         style={{ maxWidth: "1000px", marginBottom: "20px", marginTop: "20px" }}
       >
