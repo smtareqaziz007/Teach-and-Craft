@@ -21,7 +21,7 @@ const Students = () => {
   };
 
   const handleRemove = (id) => {
-    console.log("Remove student with ID:", id);
+    // console.log("Remove student with ID:", id);
     setStudentData(studentData.filter((student) => student.id !== id));
   };
 
@@ -29,8 +29,8 @@ const Students = () => {
   const handleShow = () => setshowModal(true);
 
   const onSubmit = (newStudentData) => {
-    console.log("New student");
-    console.log(newStudentData);
+    // console.log("New student");
+    // console.log(newStudentData);
     setStudentData([...studentData, newStudentData]);
   };
 
@@ -42,7 +42,7 @@ const Students = () => {
         onSubmit={onSubmit}
       />
       <Container
-        style={{ maxWidth: "1000px", marginBottom: "20px", marginTop: "20px" }}
+        style={{ maxWidth: "1100px", marginBottom: "20px", marginTop: "20px" }}
       >
         <InputGroup>
           <Button
@@ -66,7 +66,7 @@ const Students = () => {
           />
         </InputGroup>
       </Container>
-      <Container style={{ maxWidth: "1000px" }}>
+      <Container style={{ maxWidth: "1100px" }}>
         <ListGroup>
           <ListHeader />
           {studentData.map((student) => (
