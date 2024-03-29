@@ -15,9 +15,18 @@ const Students = () => {
   const [studentData, setStudentData] = useState(data);
   const [showModal, setshowModal] = useState(false);
 
-  const handleEdit = (id) => {
+  const handleEdit = (editedStudentData) => {
     // Logic to edit student
-    console.log("Edit student with ID:", id);
+    console.log("Edit student with ID:", editedStudentData.id);
+
+    let newStudentList = studentData.map((student) => {
+      if (student.id === editedStudentData.id) {
+        return editedStudentData;
+      }
+      return student;
+    });
+
+    setStudentData(newStudentList);
   };
 
   const handleRemove = (id) => {

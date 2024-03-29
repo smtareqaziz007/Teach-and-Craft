@@ -5,13 +5,13 @@ import { ListGroupItem, Row, Col } from "react-bootstrap";
 import { LuClipboardEdit } from "react-icons/lu";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import DeleteModal from "./DeleteModal";
+import EditModal from "./EditModal";
 
 const ListItem = ({ student, handleEdit, handleRemove }) => {
   const [showDeleteModal, setshowDeleteModal] = useState(false);
+  const [showEditModal, setshowEditModal] = useState(false);
 
   const handleClose = () => setshowDeleteModal(false);
-
-  // const handleDelete = ()=>
 
   return (
     <>
@@ -20,6 +20,12 @@ const ListItem = ({ student, handleEdit, handleRemove }) => {
         handleClose={handleClose}
         handleDelete={handleRemove}
         deleteId={student.id}
+      />
+      <EditModal
+        showEditModal={showEditModal}
+        studentData={student}
+        handleEdit={handleEdit}
+        handleClose={() => setshowEditModal(false)}
       />
       <ListGroupItem key={student.id}>
         <Row>
@@ -36,7 +42,7 @@ const ListItem = ({ student, handleEdit, handleRemove }) => {
             {student.class}
           </Col>
           <Col xs={6} sm={3}>
-            {student.mobile_number}
+            {student.phone}
           </Col>
           <Col xs={6} sm={2}>
             {student.gender}
@@ -45,7 +51,7 @@ const ListItem = ({ student, handleEdit, handleRemove }) => {
             <div className="text-left">
               <LuClipboardEdit
                 size={24}
-                onClick={() => handleEdit(student.id)}
+                onClick={() => setshowEditModal(true)}
                 style={{ marginRight: "10px", cursor: "pointer" }}
               />
               <RiDeleteBin5Line
