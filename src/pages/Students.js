@@ -7,10 +7,13 @@ import ListItem from "../components/ListItem";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
-import { BsPlus } from "react-icons/bs";
+import { IoPersonAddOutline } from "react-icons/io5";
+import { SiGoogleclassroom } from "react-icons/si";
+import AddModal from "../components/AddModal";
 
 const Students = () => {
   const [studentData, setStudentData] = useState(data);
+  const [showModal, setshowModal] = useState(false);
 
   const handleEdit = (id) => {
     // Logic to edit student
@@ -22,14 +25,25 @@ const Students = () => {
     setStudentData(studentData.filter((student) => student.id !== id));
   };
 
+  const handleClose = () => setshowModal(false);
+  const handleShow = () => setshowModal(true);
+
   return (
     <>
+      <AddModal showModal={showModal} handleClose={handleClose} />
       <Container
-        style={{ maxWidth: "900px", marginBottom: "20px", marginTop: "20px" }}
+        style={{ maxWidth: "1000px", marginBottom: "20px", marginTop: "20px" }}
       >
         <InputGroup>
+          <Button
+            variant="dark"
+            style={{ borderRadius: 20, marginRight: "10px" }}
+            onClick={handleShow}
+          >
+            <IoPersonAddOutline size={20} />
+          </Button>
           <Button variant="dark" style={{ borderRadius: 20 }}>
-            <BsPlus size={30} />
+            <SiGoogleclassroom size={20} />
           </Button>
           <FormControl
             placeholder="Search..."
@@ -42,7 +56,7 @@ const Students = () => {
           />
         </InputGroup>
       </Container>
-      <Container style={{ maxWidth: "900px" }}>
+      <Container style={{ maxWidth: "1000px" }}>
         <ListGroup>
           <ListHeader />
           {studentData.map((student) => (
