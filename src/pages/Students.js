@@ -13,35 +13,38 @@ import AddModal from "../components/AddModal";
 
 const Students = () => {
   const [studentData, setStudentData] = useState(data);
-  const [showModal, setshowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleEdit = (editedStudentData) => {
-    // Logic to edit student
-    console.log("Edit student with ID:", editedStudentData.id);
-
-    let newStudentList = studentData.map((student) => {
+    const updatedStudentData = studentData.map((student) => {
       if (student.id === editedStudentData.id) {
         return editedStudentData;
       }
       return student;
     });
 
-    setStudentData(newStudentList);
+    setStudentData(updatedStudentData);
+  };
+
+  const onSubmit = (newStudentData) => {
+    setStudentData([...studentData, newStudentData]);
   };
 
   const handleRemove = (id) => {
-    // console.log("Remove student with ID:", id);
     setStudentData(studentData.filter((student) => student.id !== id));
   };
 
-  const handleClose = () => setshowModal(false);
-  const handleShow = () => setshowModal(true);
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
 
-  const onSubmit = (newStudentData) => {
-    // console.log("New student");
-    // console.log(newStudentData);
-    setStudentData([...studentData, newStudentData]);
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
   };
+
+  const filteredStudents = studentData.filter((student) =>
+    student.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -66,6 +69,7 @@ const Students = () => {
           </Button>
           <FormControl
             placeholder="Search..."
+            onChange={handleSearch}
             style={{
               marginLeft: "10px",
               borderWidth: "2px",
@@ -78,7 +82,7 @@ const Students = () => {
       <Container style={{ maxWidth: "1100px" }}>
         <ListGroup>
           <ListHeader />
-          {studentData.map((student) => (
+          {filteredStudents.map((student) => (
             <ListItem
               key={student.id}
               student={student}
