@@ -22,8 +22,8 @@ const Students = () => {
     else return data;
   });
 
-  const [showAddModal, setShowAddModal] = useState(false); // State for "Add Student" modal
-  const [showAddToClassroomModal, setShowAddToClassroomModal] = useState(false); // State for "Add to Classroom" modal
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showAddToClassroomModal, setShowAddToClassroomModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStudents, setSelectedStudents] = useState([]);
 
@@ -55,12 +55,12 @@ const Students = () => {
     );
   };
 
-  const handleShowAddModal = () => setShowAddModal(true); // Function to show "Add Student" modal
-  const handleCloseAddModal = () => setShowAddModal(false); // Function to hide "Add Student" modal
+  const handleShowAddModal = () => setShowAddModal(true);
+  const handleCloseAddModal = () => setShowAddModal(false);
 
-  const handleShowAddToClassroomModal = () => setShowAddToClassroomModal(true); // Function to show "Add to Classroom" modal
+  const handleShowAddToClassroomModal = () => setShowAddToClassroomModal(true);
   const handleCloseAddToClassroomModal = () =>
-    setShowAddToClassroomModal(false); // Function to hide "Add to Classroom" modal
+    setShowAddToClassroomModal(false);
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
@@ -86,7 +86,7 @@ const Students = () => {
         handleClose={handleCloseAddModal}
         onSubmit={onSubmit}
       />
-      <AddToClassroomModal // Render "Add to Classroom" modal
+      <AddToClassroomModal
         show={showAddToClassroomModal}
         handleClose={handleCloseAddToClassroomModal}
         selectedStudents={selectedStudents}
@@ -116,7 +116,7 @@ const Students = () => {
             <Button
               variant="dark"
               style={{ borderRadius: 20 }}
-              onClick={handleShowAddToClassroomModal} // Show "Add to Classroom" modal on click
+              onClick={handleShowAddToClassroomModal}
             >
               <SiGoogleclassroom size={20} />
             </Button>

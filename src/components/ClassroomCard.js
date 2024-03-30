@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { RiDeleteBin6Line } from "react-icons/ri"; // Importing the delete icon
+import { RiDeleteBin6Line } from "react-icons/ri";
 import Modal from "react-bootstrap/Modal";
 
 const ClassroomCard = ({ id, title, description, color, onDelete }) => {
