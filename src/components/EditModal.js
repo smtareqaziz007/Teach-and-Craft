@@ -93,8 +93,8 @@ const EditModal = ({ showEditModal, handleClose, studentData, handleEdit }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={handleSubmit}>
-          Save
+        <Button variant="dark" onClick={handleSubmit}>
+          Save Changes
         </Button>
         <Button variant="secondary" onClick={handleClose}>
           Cancel

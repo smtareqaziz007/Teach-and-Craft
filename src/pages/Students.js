@@ -10,6 +10,8 @@ import FormControl from "react-bootstrap/FormControl";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { SiGoogleclassroom } from "react-icons/si";
 import AddModal from "../components/AddModal";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 const Students = () => {
   const [studentData, setStudentData] = useState(() => {
@@ -23,7 +25,6 @@ const Students = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    // console.log("Updating localStorage with studentData:", studentData);
     localStorage.setItem("students", JSON.stringify(studentData));
   }, [studentData]);
 
@@ -70,16 +71,28 @@ const Students = () => {
         style={{ maxWidth: "1100px", marginBottom: "20px", marginTop: "20px" }}
       >
         <InputGroup>
-          <Button
-            variant="dark"
-            style={{ borderRadius: 20, marginRight: "10px" }}
-            onClick={handleShow}
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="addStudentTooltip">Add Student</Tooltip>}
           >
-            <IoPersonAddOutline size={20} />
-          </Button>
-          <Button variant="dark" style={{ borderRadius: 20 }}>
-            <SiGoogleclassroom size={20} />
-          </Button>
+            <Button
+              variant="dark"
+              style={{ borderRadius: 20, marginRight: "10px" }}
+              onClick={handleShow}
+            >
+              <IoPersonAddOutline size={20} />
+            </Button>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={
+              <Tooltip id="addToClassroomTooltip">Add to Classroom</Tooltip>
+            }
+          >
+            <Button variant="dark" style={{ borderRadius: 20 }}>
+              <SiGoogleclassroom size={20} />
+            </Button>
+          </OverlayTrigger>
           <FormControl
             placeholder="Search..."
             onChange={handleSearch}

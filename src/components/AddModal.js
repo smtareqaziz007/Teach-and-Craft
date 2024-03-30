@@ -110,7 +110,7 @@ const AddModal = ({ showModal, handleClose, onSubmit }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={handleSubmit}>
+        <Button variant="dark" onClick={handleSubmit}>
           Save
         </Button>
         <Button variant="secondary" onClick={handleReset}>
