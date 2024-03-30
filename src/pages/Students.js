@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { data } from "../data/mockData";
 import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -12,6 +12,7 @@ import { SiGoogleclassroom } from "react-icons/si";
 import AddModal from "../components/AddModal";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import AddToClassroomModal from "../components/AddToClassroomModal";
 
 const Students = () => {
   const [studentData, setStudentData] = useState(() => {
@@ -21,7 +22,8 @@ const Students = () => {
     else return data;
   });
 
-  const [showModal, setShowModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false); // State for "Add Student" modal
+  const [showAddToClassroomModal, setShowAddToClassroomModal] = useState(false); // State for "Add to Classroom" modal
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStudents, setSelectedStudents] = useState([]);
 
@@ -53,8 +55,12 @@ const Students = () => {
     );
   };
 
-  const handleShow = () => setShowModal(true);
-  const handleClose = () => setShowModal(false);
+  const handleShowAddModal = () => setShowAddModal(true); // Function to show "Add Student" modal
+  const handleCloseAddModal = () => setShowAddModal(false); // Function to hide "Add Student" modal
+
+  const handleShowAddToClassroomModal = () => setShowAddToClassroomModal(true); // Function to show "Add to Classroom" modal
+  const handleCloseAddToClassroomModal = () =>
+    setShowAddToClassroomModal(false); // Function to hide "Add to Classroom" modal
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
@@ -76,9 +82,14 @@ const Students = () => {
   return (
     <>
       <AddModal
-        showModal={showModal}
-        handleClose={handleClose}
+        showModal={showAddModal}
+        handleClose={handleCloseAddModal}
         onSubmit={onSubmit}
+      />
+      <AddToClassroomModal // Render "Add to Classroom" modal
+        show={showAddToClassroomModal}
+        handleClose={handleCloseAddToClassroomModal}
+        selectedStudents={selectedStudents}
       />
       <Container
         style={{ maxWidth: "1100px", marginBottom: "20px", marginTop: "20px" }}
@@ -91,7 +102,7 @@ const Students = () => {
             <Button
               variant="dark"
               style={{ borderRadius: 20, marginRight: "10px" }}
-              onClick={handleShow}
+              onClick={handleShowAddModal}
             >
               <IoPersonAddOutline size={20} />
             </Button>
@@ -102,7 +113,11 @@ const Students = () => {
               <Tooltip id="addToClassroomTooltip">Add to Classroom</Tooltip>
             }
           >
-            <Button variant="dark" style={{ borderRadius: 20 }}>
+            <Button
+              variant="dark"
+              style={{ borderRadius: 20 }}
+              onClick={handleShowAddToClassroomModal} // Show "Add to Classroom" modal on click
+            >
               <SiGoogleclassroom size={20} />
             </Button>
           </OverlayTrigger>
