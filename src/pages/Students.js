@@ -60,14 +60,13 @@ const Students = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleSelect = (id) => {
-    if (selectedStudents.includes(id)) {
-      setSelectedStudents(
-        selectedStudents.filter((studentId) => studentId !== id)
-      );
+  const handleSelect = (student) => {
+    if (selectedStudents.includes(student)) {
+      setSelectedStudents(selectedStudents.filter((std) => std !== student));
     } else {
-      setSelectedStudents([...selectedStudents, id]);
+      setSelectedStudents([...selectedStudents, student]);
     }
+    console.log(selectedStudents);
   };
 
   const filteredStudents = studentData.filter((student) =>
@@ -129,11 +128,19 @@ const Students = () => {
               handleEdit={handleEdit}
               handleRemove={handleRemove}
               handleSelect={handleSelect}
-              isChecked={selectedStudents.includes(student.id)}
+              isChecked={selectedStudents.includes(student)}
             />
           ))}
         </ListGroup>
       </Container>
+      {/* <Container style={{ marginTop: "20px", maxWidth: "1100px" }}>
+        <h3>Selected Students:</h3>
+        <ul>
+          {selectedStudents.map((student) => {
+            return <li key={student.id}>{student.name}</li>;
+          })}
+        </ul>
+      </Container> */}
     </>
   );
 };

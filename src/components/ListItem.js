@@ -37,7 +37,7 @@ const ListItem = ({
             <input
               type="checkbox"
               checked={isChecked}
-              onChange={() => handleSelect(student.id)}
+              onChange={() => handleSelect(student)}
             />
           </Col>
           <Col xs={6} sm={3}>
