@@ -29,23 +29,32 @@ const Classrooms = () => {
     setNewClassroom({ ...newClassroom, [name]: value });
   };
 
+  const handleDeleteClassroom = (id) => {
+    setClassrooms(classrooms.filter((classroom) => classroom.id !== id));
+  };
+
   return (
     <div className="container mt-4">
       <div className="row">
         {classrooms.map((classroom) => (
           <div key={classroom.id} className="col-md-4 mb-4">
             <ClassroomCard
+              id={classroom.id} // Pass the id of the classroom
               title={classroom.title}
               description={classroom.description}
               color={classroom.color}
+              onDelete={handleDeleteClassroom} // Pass the delete function
             />
           </div>
         ))}
         <div className="col-md-4 mb-4">
           <div className="card text-center" style={{ cursor: "pointer" }}>
-            <div className="card-body">
-              <AiOutlinePlusCircle size={50} style={{ color: "#000000" }} />
-              <p>Add New Classroom</p>
+            <div
+              className="card-body"
+              style={{ height: "100px", backgroundColor: "black" }}
+            >
+              <AiOutlinePlusCircle size={50} style={{ color: "#FFFFFF" }} />
+              <p className="text-light">Add New Classroom</p>
             </div>
             <div className="card-footer">
               <input

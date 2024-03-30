@@ -133,14 +133,6 @@ const Students = () => {
           ))}
         </ListGroup>
       </Container>
-      {/* <Container style={{ marginTop: "20px", maxWidth: "1100px" }}>
-        <h3>Selected Students:</h3>
-        <ul>
-          {selectedStudents.map((student) => {
-            return <li key={student.id}>{student.name}</li>;
-          })}
-        </ul>
-      </Container> */}
     </>
   );
 };
