@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { data } from "../data/mockData";
 import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -23,6 +23,7 @@ const Students = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedStudents, setSelectedStudents] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("students", JSON.stringify(studentData));
@@ -47,6 +48,9 @@ const Students = () => {
 
   const handleRemove = (id) => {
     setStudentData(studentData.filter((student) => student.id !== id));
+    setSelectedStudents(
+      selectedStudents.filter((studentId) => studentId !== id)
+    );
   };
 
   const handleShow = () => setShowModal(true);
@@ -54,6 +58,16 @@ const Students = () => {
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
+  };
+
+  const handleSelect = (id) => {
+    if (selectedStudents.includes(id)) {
+      setSelectedStudents(
+        selectedStudents.filter((studentId) => studentId !== id)
+      );
+    } else {
+      setSelectedStudents([...selectedStudents, id]);
+    }
   };
 
   const filteredStudents = studentData.filter((student) =>
@@ -114,6 +128,8 @@ const Students = () => {
               student={student}
               handleEdit={handleEdit}
               handleRemove={handleRemove}
+              handleSelect={handleSelect}
+              isChecked={selectedStudents.includes(student.id)}
             />
           ))}
         </ListGroup>
