@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ClassroomCard from "../components/ClassroomCard";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { mockClassroom } from "../data/mockClassroom";
 import { uid } from "uid";
+import { mockClassroom } from "../data/mockClassroom";
 
 const Classrooms = () => {
-  const [classrooms, setClassrooms] = useState(mockClassroom);
+  const [classrooms, setClassrooms] = useState(() => {
+    const storedClassrooms = localStorage.getItem("classrooms");
+    if (storedClassrooms) {
+      return JSON.parse(storedClassrooms);
+    } else {
+      return mockClassroom;
+    }
+  });
 
   const [newClassroom, setNewClassroom] = useState({
     id: uid(),
@@ -13,6 +20,10 @@ const Classrooms = () => {
     description: "",
     color: "#000000",
   });
+
+  useEffect(() => {
+    localStorage.setItem("classrooms", JSON.stringify(classrooms));
+  }, [classrooms]);
 
   const handleAddClassroom = () => {
     setClassrooms([...classrooms, newClassroom]);
@@ -39,11 +50,11 @@ const Classrooms = () => {
         {classrooms.map((classroom) => (
           <div key={classroom.id} className="col-md-4 mb-4">
             <ClassroomCard
-              id={classroom.id} // Pass the id of the classroom
+              id={classroom.id}
               title={classroom.title}
               description={classroom.description}
               color={classroom.color}
-              onDelete={handleDeleteClassroom} // Pass the delete function
+              onDelete={handleDeleteClassroom}
             />
           </div>
         ))}
