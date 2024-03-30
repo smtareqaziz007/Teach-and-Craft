@@ -20,17 +20,37 @@ const Navigationbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={NavLink} to="/home" style={{ fontSize: "1.2rem" }}>
+            <Nav.Link
+              as={NavLink}
+              to="/home"
+              style={{
+                fontSize: "1.2rem",
+                width: "100px",
+                textAlign: "center",
+              }}
+            >
               Home
             </Nav.Link>
             <Nav.Link
               as={NavLink}
               to="/students"
-              style={{ fontSize: "1.2rem" }}
+              style={{
+                fontSize: "1.2rem",
+                width: "100px",
+                textAlign: "center",
+              }}
             >
               Students
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/classes" style={{ fontSize: "1.2rem" }}>
+            <Nav.Link
+              as={NavLink}
+              to="/classes"
+              style={{
+                fontSize: "1.2rem",
+                width: "100px",
+                textAlign: "center",
+              }}
+            >
               Classrooms
             </Nav.Link>
           </Nav>
