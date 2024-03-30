@@ -4,10 +4,10 @@ import { Carousel, Card } from "react-bootstrap";
 const Homepage = () => {
   return (
     <div className="container text-center">
-      <h1 className="display-4 mb-5">Welcome to Our Platform</h1>
+      <h3 className="display-4 mb-5">Welcome to Teach & Craft</h3>
       <div className="container-fluid d-flex justify-content-center">
         <Carousel
-          indicators={false}
+          indicators={true}
           nextIcon={<span className="carousel-control-next-icon text-dark" />}
           prevIcon={<span className="carousel-control-prev-icon text-dark" />}
           style={{

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { data } from "../data/mockData";
 import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -12,9 +12,20 @@ import { SiGoogleclassroom } from "react-icons/si";
 import AddModal from "../components/AddModal";
 
 const Students = () => {
-  const [studentData, setStudentData] = useState(data);
+  const [studentData, setStudentData] = useState(() => {
+    const storedStudents = localStorage.getItem("students");
+    if (storedStudents && JSON.parse(storedStudents).length > 0)
+      return JSON.parse(storedStudents);
+    else return data;
+  });
+
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    // console.log("Updating localStorage with studentData:", studentData);
+    localStorage.setItem("students", JSON.stringify(studentData));
+  }, [studentData]);
 
   const handleEdit = (editedStudentData) => {
     const updatedStudentData = studentData.map((student) => {
@@ -28,7 +39,9 @@ const Students = () => {
   };
 
   const onSubmit = (newStudentData) => {
-    setStudentData([...studentData, newStudentData]);
+    const updatedStudentData = [...studentData, newStudentData];
+    setStudentData(updatedStudentData);
+    localStorage.setItem("students", JSON.stringify(updatedStudentData));
   };
 
   const handleRemove = (id) => {
